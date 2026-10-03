@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#060b1d">
+    <title>
+      {%- if page_title -%}
+        {{ page_title }}{% unless current_page == 1 %} — Page {{ current_page }}{% endunless %} — {{ shop.name }}
+      {%- else -%}
+        {{ shop.name }}
+      {%- endif -%}
+    </title>
+    {%- if page_description -%}
+      <meta name="description" content="{{ page_description | escape }}">
+    {%- endif -%}
+    <link rel="icon" type="image/png" href="{{ 'favicon.png' | asset_url }}">
+    {{ 'theme.css' | asset_url | stylesheet_tag }}
+    <script src="{{ 'theme.js' | asset_url }}" defer></script>
+    {%- if template.name == 'product' -%}
+      <script src="{{ 'product-form.js' | asset_url }}" defer></script>
+    {%- endif -%}
+    <script src="{{ 'astra.js' | asset_url }}" defer></script>
+    {{ content_for_header }}
+  </head>
+  <body class="template-{{ template.name | handle }}">
+    <a class="skip-link" href="#MainContent">Aller au contenu</a>
+    {% section 'header' %}
+    <main id="MainContent" role="main" tabindex="-1">
+      {{ content_for_layout }}
+    </main>
+    {% section 'footer' %}
+    {% section 'astra-chat' %}
+    <div class="toast" id="Toast" role="status" aria-live="polite" data-testid="toast-message"></div>
+  </body>
+</html>

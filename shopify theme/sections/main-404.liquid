@@ -1,0 +1,16 @@
+<section class="page-shell" data-testid="404-page">
+  <canvas class="starfield" data-starfield data-density="70"></canvas>
+  <div class="page-shell__inner page-shell__inner--narrow center-page">
+    <p class="eyebrow eyebrow--center">Page introuvable</p>
+    <h1>Cette étoile n'existe pas encore.</h1>
+    <p>La page demandée a peut-être été déplacée. La collection Instant Céleste vous attend.</p>
+    <a class="btn btn--gold" href="{{ routes.all_products_collection_url }}" data-testid="404-shop-button">Retour à la boutique</a>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Page 404",
+  "settings": []
+}
+{% endschema %}

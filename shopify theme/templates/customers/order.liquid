@@ -1,0 +1,35 @@
+<section class="page-shell" data-testid="customer-order-page">
+  <canvas class="starfield" data-starfield data-density="50"></canvas>
+  <div class="page-shell__inner">
+    <div class="section__header reveal">
+      <p class="eyebrow eyebrow--center">Commande {{ order.name }}</p>
+      <h1>Suivi de votre affiche</h1>
+      <p>Commande passée le {{ order.created_at | date: '%d/%m/%Y' }}.</p>
+    </div>
+    <div class="card page-content reveal">
+      <h2>Articles</h2>
+      {% for line_item in order.line_items %}
+        <div class="cart-properties" data-testid="customer-order-item-{{ forloop.index }}">
+          <div><dt>Produit</dt><dd>{{ line_item.title }}</dd></div>
+          {% for property in line_item.properties %}
+            {% unless property.last == blank %}
+              <div><dt>{{ property.first }}</dt><dd>{{ property.last }}</dd></div>
+            {% endunless %}
+          {% endfor %}
+        </div>
+      {% endfor %}
+      {% if order.fulfillments.size > 0 %}
+        <h2>Expédition</h2>
+        {% for fulfillment in order.fulfillments %}
+          <p>
+            {{ fulfillment.tracking_company }}
+            {% if fulfillment.tracking_number %} — {{ fulfillment.tracking_number }}{% endif %}
+            {% if fulfillment.tracking_url %}<br><a href="{{ fulfillment.tracking_url }}" data-testid="customer-tracking-link">Suivre le colis</a>{% endif %}
+          </p>
+        {% endfor %}
+      {% else %}
+        <p>Votre affiche est en préparation. Le lien de suivi apparaîtra ici après expédition.</p>
+      {% endif %}
+    </div>
+  </div>
+</section>

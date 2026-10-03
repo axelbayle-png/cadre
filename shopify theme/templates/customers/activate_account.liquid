@@ -1,0 +1,19 @@
+<section class="page-shell" data-testid="activate-account-page">
+  <canvas class="starfield" data-starfield data-density="50"></canvas>
+  <div class="page-shell__inner page-shell__inner--narrow">
+    <div class="section__header reveal">
+      <p class="eyebrow eyebrow--center">Compte client</p>
+      <h1>Activer mon compte</h1>
+    </div>
+    <div class="card page-content reveal">
+      {% form 'activate_customer_password' %}
+        {{ form.errors | default_errors }}
+        <label class="lbl" for="ActivatePassword">Mot de passe</label>
+        <input class="field" id="ActivatePassword" type="password" name="customer[password]" autocomplete="new-password" required data-testid="activate-password-input">
+        <label class="lbl" for="ActivatePasswordConfirmation">Confirmation</label>
+        <input class="field" id="ActivatePasswordConfirmation" type="password" name="customer[password_confirmation]" autocomplete="new-password" required data-testid="activate-password-confirm-input">
+        <button class="btn btn--gold btn--full" type="submit" data-testid="activate-account-button">Activer</button>
+      {% endform %}
+    </div>
+  </div>
+</section>

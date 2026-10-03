@@ -1,0 +1,13 @@
+[
+  {
+    "name": "Assistante Astra",
+    "settings": [
+      {
+        "type": "text",
+        "id": "astra_api_url",
+        "label": "URL de l'API Astra",
+        "info": "URL de base se terminant par /api. L'assistante utilise ensuite /astra/chat."
+      }
+    ]
+  }
+]

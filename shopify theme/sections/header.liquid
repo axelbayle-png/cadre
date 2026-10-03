@@ -1,0 +1,41 @@
+<header class="site-header glass" data-testid="site-header">
+  <div class="header-inner">
+    <a href="{{ routes.root_url }}" class="logo" aria-label="Celestiar — Accueil" data-testid="logo-home-link">
+      <img src="{{ 'logo-emblem.png' | asset_url }}" alt="" width="42" height="42">
+      <span>Celestiar</span>
+    </a>
+
+    <nav class="desktop-nav" aria-label="Navigation principale">
+      <a class="nav-link{% if request.path == routes.root_url %} active{% endif %}" href="{{ routes.root_url }}" data-testid="nav-accueil">Accueil</a>
+      <a class="nav-link{% if request.path contains 'collections' %} active{% endif %}" href="{{ routes.all_products_collection_url }}" data-testid="nav-boutique">Boutique</a>
+      <a class="nav-link{% if page.handle == 'a-propos' %} active{% endif %}" href="{{ routes.root_url }}pages/a-propos" data-testid="nav-apropos">À propos</a>
+      <a class="nav-link{% if page.handle == 'suivi' %} active{% endif %}" href="{{ routes.root_url }}pages/suivi" data-testid="nav-suivi">Suivi</a>
+      <a class="nav-link{% if page.handle == 'faq' %} active{% endif %}" href="{{ routes.root_url }}pages/faq" data-testid="nav-faq">FAQ</a>
+    </nav>
+
+    <div class="header-actions">
+      <a href="{{ routes.cart_url }}" class="icon-button" aria-label="Ouvrir le panier, {{ cart.item_count }} article{% if cart.item_count > 1 %}s{% endif %}" data-testid="open-cart-button">
+        {% render 'icon', name: 'bag', size: 19 %}
+        <span class="cart-count{% if cart.item_count == 0 %} is-empty{% endif %}" data-testid="cart-count-badge">{{ cart.item_count }}</span>
+      </a>
+      <button type="button" class="icon-button mobile-menu-toggle" aria-label="Ouvrir le menu" aria-expanded="false" data-menu-toggle data-testid="mobile-menu-button">
+        {% render 'icon', name: 'menu', size: 19 %}
+      </button>
+    </div>
+  </div>
+
+  <nav class="mobile-nav" data-mobile-menu data-testid="mobile-menu" aria-label="Navigation mobile" hidden>
+    <a href="{{ routes.root_url }}" data-testid="nav-accueil-mobile">Accueil</a>
+    <a href="{{ routes.all_products_collection_url }}" data-testid="nav-boutique-mobile">Boutique</a>
+    <a href="{{ routes.root_url }}pages/a-propos" data-testid="nav-apropos-mobile">À propos</a>
+    <a href="{{ routes.root_url }}pages/suivi" data-testid="nav-suivi-mobile">Suivi</a>
+    <a href="{{ routes.root_url }}pages/faq" data-testid="nav-faq-mobile">FAQ</a>
+  </nav>
+</header>
+
+{% schema %}
+{
+  "name": "En-tête",
+  "settings": []
+}
+{% endschema %}

@@ -1,0 +1,29 @@
+{%- liquid
+  assign shopify_product = all_products[handle]
+  assign product_url = '/products/' | append: handle
+  if shopify_product != blank
+    assign product_url = shopify_product.url
+  endif
+-%}
+<article class="card product-card reveal" data-testid="product-card-{{ handle }}">
+  {%- assign poster_image = poster_asset | asset_url -%}
+  <a class="product-card__image" href="{{ product_url }}" aria-label="Personnaliser {{ title | escape }}" data-testid="product-image-link-{{ handle }}">
+    {% render 'live-poster', image: poster_image, alt: title %}
+  </a>
+  <div class="product-card__body">
+    <p class="product-card__tagline">{{ tagline }}</p>
+    <h3 class="product-card__title">{{ title }}</h3>
+    <div class="product-card__footer">
+      <span class="product-card__price" data-testid="product-price-{{ handle }}">
+        {%- if shopify_product != blank -%}
+          dès {{ shopify_product.price_min | money }} TTC
+        {%- else -%}
+          dès 59,90 € TTC
+        {%- endif -%}
+      </span>
+      <a class="btn btn--ghost btn--small" href="{{ product_url }}" data-testid="customize-link-{{ handle }}">
+        Personnaliser {% render 'icon', name: 'arrow-right', size: 14 %}
+      </a>
+    </div>
+  </div>
+</article>

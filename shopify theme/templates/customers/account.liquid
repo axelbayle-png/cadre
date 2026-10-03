@@ -1,0 +1,27 @@
+<section class="page-shell" data-testid="account-page">
+  <canvas class="starfield" data-starfield data-density="50"></canvas>
+  <div class="page-shell__inner">
+    <div class="section__header reveal">
+      <p class="eyebrow eyebrow--center">Compte client</p>
+      <h1>Bonjour{% if customer.first_name %} {{ customer.first_name }}{% endif %}</h1>
+      <p>Vos commandes et leurs liens de suivi Shopify sont rassemblés ici.</p>
+    </div>
+    <div class="card page-content reveal" data-testid="account-orders">
+      <h2>Vos commandes</h2>
+      {% if customer.orders_count > 0 %}
+        <div class="search-results">
+          {% for order in customer.orders %}
+            <a class="card search-result" href="{{ order.customer_url }}" data-testid="account-order-{{ forloop.index }}">
+              <strong>Commande {{ order.name }}</strong>
+              <span>{{ order.created_at | date: '%d/%m/%Y' }} · {{ order.total_price | money }} · {{ order.fulfillment_status_label }}</span>
+            </a>
+          {% endfor %}
+        </div>
+      {% else %}
+        <p>Aucune commande pour le moment. Votre premier ciel vous attend dans la boutique.</p>
+        <a class="btn btn--gold" href="{{ routes.all_products_collection_url }}" data-testid="account-shop-button">Découvrir la collection</a>
+      {% endif %}
+      <p class="center-actions"><a href="{{ routes.account_logout_url }}" data-testid="logout-link">Se déconnecter</a></p>
+    </div>
+  </div>
+</section>

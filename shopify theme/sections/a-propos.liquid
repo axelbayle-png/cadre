@@ -1,0 +1,44 @@
+<section class="page-shell" data-testid="apropos-page">
+  <canvas class="starfield" data-starfield data-density="60"></canvas>
+  <div class="page-shell__inner page-shell__inner--narrow">
+    <div class="section__header reveal">
+      <p class="eyebrow eyebrow--center">Notre histoire</p>
+      <h1>À propos de Celestiar</h1>
+    </div>
+
+    <article class="card about-card reveal">
+      <p class="about-lead">Celestiar est né d'une idée simple : certaines dates ne s'oublient pas. Une naissance, une rencontre, un « oui » murmuré sous les étoiles. Le ciel, lui, s'en souvient toujours.</p>
+      <p>Avec la collection Instant Céleste, nous transformons ce souvenir en affiche d'art : vous choisissez un visuel parmi nos cinq ciels, vous nous confiez un prénom, une date, une heure et une ville — et nous composons votre affiche, lettre dorée après lettre dorée. Chaque commande est imprimée sur papier d'art 250 g/m², encadrée avec soin, puis expédiée sous 4 à 12 jours ouvrés.</p>
+      <p>Nous sommes une toute petite boutique, et c'est notre force : chaque affiche compte, chaque client aussi. Une question, une envie particulière ? Écrivez-nous à <a href="mailto:celestiarshop@outlook.com" data-testid="apropos-email-link">celestiarshop@outlook.com</a> — nous répondons personnellement, sous 48 h.</p>
+    </article>
+
+    <div class="values-grid">
+      <article class="card value-card reveal" data-testid="apropos-value-0">
+        <span class="icon-box icon-box--gold">{% render 'icon', name: 'sparkles', size: 19 %}</span>
+        <h3>Une commande à la fois</h3>
+        <p>Chaque affiche est préparée individuellement, avec votre histoire.</p>
+      </article>
+      <article class="card value-card reveal" data-testid="apropos-value-1">
+        <span class="icon-box icon-box--gold">{% render 'icon', name: 'award', size: 19 %}</span>
+        <h3>Matériaux responsables</h3>
+        <p>Papier et cadres certifiés FSC, issus de forêts gérées durablement.</p>
+      </article>
+      <article class="card value-card reveal" data-testid="apropos-value-2">
+        <span class="icon-box icon-box--gold">{% render 'icon', name: 'package', size: 19 %}</span>
+        <h3>Prête à accrocher</h3>
+        <p>Encadrée, protégée, kit d’accrochage inclus dans chaque colis.</p>
+      </article>
+    </div>
+
+    <div class="center-actions reveal">
+      <a class="btn btn--gold" href="{{ routes.all_products_collection_url }}" data-testid="apropos-cta-button">Découvrir la collection</a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "À propos",
+  "settings": []
+}
+{% endschema %}

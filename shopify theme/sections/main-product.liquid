@@ -1,0 +1,160 @@
+{%- liquid
+  assign current_variant = product.selected_or_first_available_variant
+  assign poster_asset = 'poster-aurore.jpg'
+  assign product_tagline = 'Une aurore rien qu’à vous'
+  case product.handle
+    when 'aurore-boreale'
+      assign poster_asset = 'poster-aurore.jpg'
+      assign product_tagline = 'Une aurore rien qu’à vous'
+    when 'nuages-roses'
+      assign poster_asset = 'poster-nuages.jpg'
+      assign product_tagline = 'La douceur d’un ciel d’aube'
+    when 'etoiles-celestes'
+      assign poster_asset = 'poster-etoiles-celestes.jpg'
+      assign product_tagline = 'Un ciel d’été infini'
+    when 'voie-lactee'
+      assign poster_asset = 'poster-voie-lactee.jpg'
+      assign product_tagline = 'La voie lactée en majesté'
+    when 'etoiles-filantes'
+      assign poster_asset = 'poster-etoiles.jpg'
+      assign product_tagline = 'Une pluie de vœux'
+  endcase
+  assign poster_image = poster_asset | asset_url
+-%}
+
+<section class="product-page" data-product-page data-testid="personnaliser-page">
+  <canvas class="starfield" data-starfield data-density="50"></canvas>
+  <div class="product-page__inner">
+    <a class="back-link" href="{{ routes.all_products_collection_url }}" data-testid="back-to-shop-link">← Retour à la boutique</a>
+
+    <div class="product-layout">
+      <div class="product-preview reveal">
+        <div class="poster-frame" data-frame="noir">
+          {% render 'live-poster', image: poster_image, alt: product.title, lazy: false %}
+        </div>
+        <p class="sample-note" data-testid="sample-note">Aperçu non contractuel</p>
+      </div>
+
+      <div class="product-config">
+        <div class="reveal">
+          <p class="eyebrow">Collection Instant Céleste</p>
+          <h1>{{ product.title }}</h1>
+          <p class="product-tagline">{{ product_tagline }}</p>
+          <p class="product-intro">Votre ciel exact, à la date et au lieu qui comptent, transformé en affiche d'art dorée et personnalisée. Créée et expédiée sous 4 à 12 jours ouvrés.</p>
+        </div>
+
+        <div class="card config-card reveal" data-testid="ic-style-card">
+          <h2><span>01</span>Votre affiche</h2>
+          <div class="poster-thumbs" aria-label="Choisir une autre affiche">
+            <a href="/products/aurore-boreale" class="poster-thumb{% if product.handle == 'aurore-boreale' %} active{% endif %}" data-testid="ic-thumb-aurore"><img src="{{ 'poster-aurore.jpg' | asset_url }}" alt="Aurore Boréale" width="1000" height="1500" loading="lazy"><span>Aurore Boréale</span></a>
+            <a href="/products/nuages-roses" class="poster-thumb{% if product.handle == 'nuages-roses' %} active{% endif %}" data-testid="ic-thumb-nuages"><img src="{{ 'poster-nuages.jpg' | asset_url }}" alt="Nuages Roses" width="1000" height="1500" loading="lazy"><span>Nuages Roses</span></a>
+            <a href="/products/etoiles-celestes" class="poster-thumb{% if product.handle == 'etoiles-celestes' %} active{% endif %}" data-testid="ic-thumb-etoiles-celestes"><img src="{{ 'poster-etoiles-celestes.jpg' | asset_url }}" alt="Étoiles Célestes" width="1000" height="1500" loading="lazy"><span>Étoiles Célestes</span></a>
+            <a href="/products/voie-lactee" class="poster-thumb{% if product.handle == 'voie-lactee' %} active{% endif %}" data-testid="ic-thumb-voie-lactee"><img src="{{ 'poster-voie-lactee.jpg' | asset_url }}" alt="Voie Lactée" width="1000" height="1500" loading="lazy"><span>Voie Lactée</span></a>
+            <a href="/products/etoiles-filantes" class="poster-thumb{% if product.handle == 'etoiles-filantes' %} active{% endif %}" data-testid="ic-thumb-etoiles"><img src="{{ 'poster-etoiles.jpg' | asset_url }}" alt="Étoiles Filantes" width="1000" height="1500" loading="lazy"><span>Étoiles Filantes</span></a>
+          </div>
+        </div>
+
+        {% form 'product', product, id: 'ProductForm', class: 'product-form' %}
+          <input type="hidden" name="id" value="{{ current_variant.id }}" data-variant-id>
+          <input type="hidden" name="quantity" value="1">
+
+          {% for option in product.options_with_values %}
+            <fieldset class="card config-card option-group reveal" data-option-position="{{ option.position }}" data-testid="option-group-{{ option.position }}">
+              {%- assign option_number = option.position | plus: 1 -%}
+              <legend><span>0{{ option_number }}</span>{{ option.name }}</legend>
+              <div class="option-values{% if option.name == 'Cadre' %} option-values--frames{% endif %}">
+                {% for value in option.values %}
+                  <button type="button" class="option-button{% if option.selected_value == value %} active{% endif %}" data-option-value="{{ value | escape }}" data-testid="option-{{ option.position }}-{{ value | handle }}">
+                    {{ value }}
+                    {%- if option.name == 'Cadre' and value == 'Chêne' -%}
+                      <small>+7,90 €</small>
+                    {%- elsif option.name == 'Cadre' -%}
+                      <small>Inclus</small>
+                    {%- endif -%}
+                  </button>
+                {% endfor %}
+              </div>
+            </fieldset>
+          {% endfor %}
+
+          <div class="card config-card reveal" data-testid="ic-form-card">
+            <h2><span>04</span>Votre personnalisation</h2>
+            <p class="config-help">Votre texte apparaît instantanément sur l'affiche à gauche.</p>
+            <div class="form-grid">
+              <div>
+                <label class="lbl" for="PersonalisationPrenom">Prénom</label>
+                <input id="PersonalisationPrenom" class="field" type="text" name="properties[Prénom]" maxlength="20" placeholder="Votre prénom" required data-preview-input="prenom" data-testid="ic-prenom-input">
+              </div>
+              <div>
+                <label class="lbl" for="PersonalisationVille">Ville</label>
+                <input id="PersonalisationVille" class="field" type="text" name="properties[Ville]" maxlength="30" placeholder="Votre ville" required data-preview-input="ville" data-testid="ic-ville-input">
+              </div>
+              <div>
+                <label class="lbl" for="PersonalisationDate">Date</label>
+                <input id="PersonalisationDate" class="field" type="date" name="properties[Date]" required data-preview-input="date" data-testid="ic-date-input">
+              </div>
+              <div>
+                <label class="lbl" for="PersonalisationHeure">Heure</label>
+                <input id="PersonalisationHeure" class="field" type="time" name="properties[Heure]" required data-preview-input="heure" data-testid="ic-heure-input">
+              </div>
+              <div class="form-grid__full">
+                <div class="label-row">
+                  <label class="lbl" for="PersonalisationPhrase">Phrase courte <span>(facultative)</span></label>
+                  <span data-message-counter data-testid="ic-message-counter">0/60</span>
+                </div>
+                <input id="PersonalisationPhrase" class="field" type="text" name="properties[Phrase]" maxlength="60" placeholder="Votre phrase" data-preview-input="phrase" data-testid="ic-message-input">
+              </div>
+              <label class="spelling-check form-grid__full" data-testid="spelling-check-label">
+                <input type="checkbox" name="properties[Orthographe vérifiée]" value="Oui" required data-spelling-checkbox data-testid="spelling-checkbox">
+                <span>J'ai vérifié l'orthographe de mon texte <em>— il sera imprimé exactement comme saisi.</em></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="purchase-panel reveal">
+            <button type="submit" class="btn btn--gold btn--full" {% unless product.available %}disabled{% endunless %} data-add-to-cart data-testid="ic-add-to-cart-button">
+              {% render 'icon', name: 'bag', size: 17 %}
+              <span data-add-label>Ajouter au panier — {{ current_variant.price | money }} TTC</span>
+            </button>
+            <p class="purchase-note" data-testid="purchase-note">Prix TTC selon la configuration Shopify · Expédition 4 à 12 jours ouvrés · Livraison offerte si configurée · Satisfait ou remplacé</p>
+            <p class="form-error" role="alert" hidden data-form-error data-testid="product-form-error"></p>
+          </div>
+        {% endform %}
+
+        <div class="card product-details reveal" data-testid="product-details-card">
+          <h2>Détails du produit</h2>
+          <dl class="details-grid">
+            <div><dt>Prêt à accrocher</dt><dd>Livrée encadrée, prête à être accrochée directement au mur.</dd></div>
+            <div><dt>Finition papier</dt><dd>Mat, non couché, blanc naturel cassé, papier de qualité muséale.</dd></div>
+            <div><dt>Protection</dt><dd>Plexiglas (1,0 à 2,5 mm) pour protéger votre œuvre.</dd></div>
+            <div><dt>Kit d'accrochage</dt><dd>Inclus dans chaque commande.</dd></div>
+          </dl>
+          <details class="details-more" data-testid="product-details-more">
+            <summary data-testid="details-toggle-button">Voir tous les détails</summary>
+            <dl class="details-grid">
+              <div><dt>Bois</dt><dd>Chêne et frêne issus de forêts gérées de manière responsable.</dd></div>
+              <div><dt>Couleurs de cadre</dt><dd>Bois naturel, noir et blanc, avec les veines du bois mises en valeur.</dd></div>
+              <div><dt>Épaisseur du cadre</dt><dd>20 mm d'épaisseur et de largeur.</dd></div>
+              <div><dt>Grammage du papier</dt><dd>250 g/m², base solide idéale pour les beaux-arts.</dd></div>
+              <div><dt>Sans acide</dt><dd>Technologie papier alcaline pour éviter le jaunissement.</dd></div>
+              <div><dt>Couleurs stables</dt><dd>Faible teneur en azurants optiques.</dd></div>
+              <div><dt>Écoresponsable</dt><dd>Papier et cadre certifiés FSC.</dd></div>
+              <div><dt>Emballage</dt><dd>Expédié dans un emballage solide et protecteur.</dd></div>
+              <div><dt>Impression à la demande</dt><dd>Imprimé et expédié sans commande minimum.</dd></div>
+            </dl>
+          </details>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="application/json" data-variants-json>{{ product.variants | json }}</script>
+  <script type="application/json" data-selected-variant-json>{{ current_variant | json }}</script>
+</section>
+
+{% schema %}
+{
+  "name": "Produit personnalisable",
+  "settings": []
+}
+{% endschema %}

@@ -1,0 +1,21 @@
+<section class="page-shell" data-testid="login-page">
+  <canvas class="starfield" data-starfield data-density="50"></canvas>
+  <div class="page-shell__inner page-shell__inner--narrow">
+    <div class="section__header reveal">
+      <p class="eyebrow eyebrow--center">Compte client</p>
+      <h1>Connexion</h1>
+      <p>Retrouvez vos commandes Celestiar et leurs liens de suivi.</p>
+    </div>
+    <div class="card page-content reveal">
+      {% form 'customer_login' %}
+        {{ form.errors | default_errors }}
+        <label class="lbl" for="CustomerEmail">E-mail</label>
+        <input class="field" id="CustomerEmail" type="email" name="customer[email]" autocomplete="email" required data-testid="login-email-input">
+        <label class="lbl" for="CustomerPassword">Mot de passe</label>
+        <input class="field" id="CustomerPassword" type="password" name="customer[password]" autocomplete="current-password" required data-testid="login-password-input">
+        <button class="btn btn--gold btn--full" type="submit" data-testid="login-submit-button">Se connecter</button>
+        <p class="center-actions"><a href="{{ routes.account_register_url }}" data-testid="register-link">Créer un compte</a> · <a href="#recover" data-testid="recover-link">Mot de passe oublié</a></p>
+      {% endform %}
+    </div>
+  </div>
+</section>

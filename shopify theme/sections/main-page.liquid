@@ -1,0 +1,19 @@
+<section class="page-shell" data-testid="page-{{ page.handle }}">
+  <canvas class="starfield" data-starfield data-density="50"></canvas>
+  <div class="page-shell__inner page-shell__inner--narrow">
+    <div class="section__header reveal">
+      <p class="eyebrow eyebrow--center">Celestiar</p>
+      <h1>{{ page.title }}</h1>
+    </div>
+    <article class="card page-content reveal" data-testid="page-content">
+      {{ page.content }}
+    </article>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Page",
+  "settings": []
+}
+{% endschema %}

@@ -1,0 +1,18 @@
+<section class="final-cta" data-testid="final-cta-section">
+  <canvas class="starfield" data-starfield data-density="90"></canvas>
+  <div class="final-cta__inner reveal">
+    <svg width="26" height="26" viewBox="0 0 100 100" aria-hidden="true"><path d="M50 5 C50 32, 68 50, 95 50 C68 50, 50 68, 50 95 C50 68, 32 50, 5 50 C32 50, 50 32, 50 5 Z" fill="#d8b46a"/></svg>
+    <h2>Votre histoire mérite sa place <em>parmi les étoiles.</em></h2>
+    <p>Choisissez votre ciel, racontez-nous votre date, recevez votre affiche sous 4 à 12 jours ouvrés.</p>
+    <a class="btn btn--gold" href="{{ routes.all_products_collection_url }}" data-testid="final-cta-button">
+      {% render 'icon', name: 'sparkles', size: 17 %} Découvrir la collection
+    </a>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Appel à l'action final",
+  "settings": []
+}
+{% endschema %}

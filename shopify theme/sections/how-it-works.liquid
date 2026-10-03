@@ -1,0 +1,31 @@
+<section class="section" data-testid="how-it-works-section">
+  <div class="section__header reveal">
+    <p class="eyebrow eyebrow--center">Le processus</p>
+    <h2>Comment ça marche</h2>
+    <p>Trois étapes, et votre souvenir devient une pièce d'art murale.</p>
+  </div>
+  <div class="steps-grid">
+    <article class="card step-card reveal" data-testid="step-card-01">
+      <div class="step-card__top"><span class="icon-box">{% render 'icon', name: 'sparkles', size: 19 %}</span><span class="step-number">01</span></div>
+      <h3>Choisissez votre ciel</h3>
+      <p>Cinq visuels d'art, du plus doux au plus profond : il y a le vôtre.</p>
+    </article>
+    <article class="card step-card reveal" data-testid="step-card-02">
+      <div class="step-card__top"><span class="icon-box">{% render 'icon', name: 'pen', size: 19 %}</span><span class="step-number">02</span></div>
+      <h3>Personnalisez</h3>
+      <p>Prénom, date, heure, ville et un petit mot : votre histoire en lettres d'or.</p>
+    </article>
+    <article class="card step-card reveal" data-testid="step-card-03">
+      <div class="step-card__top"><span class="icon-box">{% render 'icon', name: 'package', size: 19 %}</span><span class="step-number">03</span></div>
+      <h3>Recevez</h3>
+      <p>Votre affiche est créée pour vous et livrée en 4 à 12 jours ouvrés.</p>
+    </article>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Comment ça marche",
+  "settings": []
+}
+{% endschema %}

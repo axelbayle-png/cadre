@@ -1,0 +1,97 @@
+<footer class="site-footer" data-testid="site-footer">
+  <div class="footer-main">
+    <div class="footer-brand">
+      <img class="footer-logo" src="{{ 'logo-full.png' | asset_url }}" alt="Celestiar" width="180" height="180" loading="lazy">
+      <p>Plus qu'une boutique, un univers — le ciel de votre plus beau jour, imprimé et encadré avec soin.</p>
+    </div>
+    <nav class="footer-links" aria-label="Liens légaux">
+      <button type="button" data-modal-open="mentions" data-testid="footer-mentions-link">Mentions légales</button>
+      <button type="button" data-modal-open="cgv" data-testid="footer-cgv-link">CGV</button>
+      <button type="button" data-modal-open="confidentialite" data-testid="footer-confidentialite-link">Confidentialité</button>
+      <button type="button" data-modal-open="livraison" data-testid="footer-livraison-link">Livraison & retours</button>
+      <button type="button" data-modal-open="contact" data-testid="footer-contact-link">Contact</button>
+    </nav>
+  </div>
+  <div class="footer-bottom">
+    <p>© {{ 'now' | date: '%Y' }} Celestiar — Le ciel de votre plus beau jour.</p>
+    <div class="payment-badges" aria-label="Paiement sécurisé Shopify" data-testid="payment-badges">
+      <span>VISA</span>
+      <span class="mc" aria-label="Mastercard"><i></i><i></i></span>
+      <span>PayPal</span>
+    </div>
+    <a href="mailto:celestiarshop@outlook.com" data-testid="footer-email-link">celestiarshop@outlook.com</a>
+  </div>
+
+  <div class="modal" id="modal-mentions" role="dialog" aria-modal="true" aria-labelledby="mentions-title" hidden data-testid="legal-modal">
+    <div class="modal__backdrop" data-modal-close></div>
+    <div class="modal__panel">
+      <button type="button" class="modal__close" data-modal-close aria-label="Fermer">{% render 'icon', name: 'close', size: 16 %}</button>
+      <h3 id="mentions-title">Mentions légales</h3>
+      <p>Éditeur du site : [NOM PRÉNOM — à compléter] — [ADRESSE — à compléter]. SIRET : [SIRET — en cours d'immatriculation]. Numéro de TVA intracommunautaire : [N° TVA — à compléter]. Contact : celestiarshop@outlook.com.</p>
+      <p>Directeur de la publication : [NOM PRÉNOM — à compléter]. Hébergement de la boutique : Shopify Inc. Fabrication et expédition des affiches : prestataire d'impression à la demande.</p>
+      <p>L'ensemble des contenus du site (visuels, textes, collection Instant Céleste) est protégé par le droit d'auteur. Toute reproduction sans autorisation est interdite.</p>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-cgv" role="dialog" aria-modal="true" aria-labelledby="cgv-title" hidden data-testid="legal-modal">
+    <div class="modal__backdrop" data-modal-close></div>
+    <div class="modal__panel">
+      <button type="button" class="modal__close" data-modal-close aria-label="Fermer">{% render 'icon', name: 'close', size: 16 %}</button>
+      <h3 id="cgv-title">Conditions Générales de Vente</h3>
+      <p>Chaque affiche Celestiar est une création personnalisée : le texte que vous saisissez est imprimé tel quel. Vérifiez attentivement l'orthographe avant de valider — une case de confirmation vous est demandée à chaque commande.</p>
+      <p>Prix : en euros, toutes taxes comprises si l'option est activée dans Shopify. Le prix dépend de la taille choisie ; le cadre noir ou blanc est inclus, le cadre chêne est en option à +7,90 €. Paiement sécurisé via Shopify Checkout, selon les moyens activés dans votre boutique.</p>
+      <p>Fabrication et expédition : votre affiche est produite par un prestataire d'impression à la demande, puis expédiée sous 4 à 12 jours ouvrés avec suivi.</p>
+      <p>Rétractation et retours : conformément à l'article L221-28 du Code de la consommation, le droit de rétractation ne s'applique pas aux biens personnalisés. En cas de défaut de fabrication ou de dommage pendant le transport, votre affiche est remplacée ou remboursée — signalez le problème à celestiarshop@outlook.com sous 7 jours, avec une photo.</p>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-confidentialite" role="dialog" aria-modal="true" aria-labelledby="confidentialite-title" hidden data-testid="legal-modal">
+    <div class="modal__backdrop" data-modal-close></div>
+    <div class="modal__panel">
+      <button type="button" class="modal__close" data-modal-close aria-label="Fermer">{% render 'icon', name: 'close', size: 16 %}</button>
+      <h3 id="confidentialite-title">Politique de confidentialité</h3>
+      <p>Données collectées : prénom, date, heure, ville et message de personnalisation (pour composer votre affiche) ; e-mail et adresse de livraison (pour la commande et la livraison).</p>
+      <p>Usage : fabrication et livraison de votre commande, suivi et réponse à vos messages. Aucune revente ni partage à des fins publicitaires. Les données bancaires sont traitées par Shopify et ne transitent jamais par nos serveurs.</p>
+      <p>Vos droits RGPD : accès, rectification et suppression de vos données sur simple demande à celestiarshop@outlook.com.</p>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-livraison" role="dialog" aria-modal="true" aria-labelledby="livraison-title" hidden data-testid="legal-modal">
+    <div class="modal__backdrop" data-modal-close></div>
+    <div class="modal__panel">
+      <button type="button" class="modal__close" data-modal-close aria-label="Fermer">{% render 'icon', name: 'close', size: 16 %}</button>
+      <h3 id="livraison-title">Livraison & retours</h3>
+      <p>Votre affiche est personnalisée, imprimée sur papier d'art 250 g/m², encadrée et expédiée sous 4 à 12 jours ouvrés, dans un emballage solide et protecteur. Livraison offerte si le tarif gratuit est configuré dans Shopify, avec suivi envoyé par e-mail.</p>
+      <p>Les affiches étant personnalisées, elles ne sont ni reprises ni échangées. En cas de défaut de fabrication ou de dommage à la livraison, nous remplaçons ou remboursons : écrivez à celestiarshop@outlook.com sous 7 jours avec une photo du problème.</p>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-contact" role="dialog" aria-modal="true" aria-labelledby="contact-title" hidden data-testid="contact-modal">
+    <div class="modal__backdrop" data-modal-close></div>
+    <div class="modal__panel modal__panel--form">
+      <button type="button" class="modal__close" data-modal-close aria-label="Fermer">{% render 'icon', name: 'close', size: 16 %}</button>
+      <h3 id="contact-title">Écrivez-nous</h3>
+      <p class="modal__intro">Une question sur votre ciel, une commande, un cadeau ? Réponse personnelle sous 48 h ouvrées.</p>
+      {% form 'contact', id: 'FooterContactForm', class: 'contact-form' %}
+        {% if form.posted_successfully? %}
+          <p class="form-success" data-testid="contact-success">Message envoyé — nous vous répondons sous 48 h.</p>
+        {% endif %}
+        {{ form.errors | default_errors }}
+        <label for="FooterContactName">Nom</label>
+        <input id="FooterContactName" class="field" type="text" name="contact[name]" autocomplete="name" required data-testid="contact-name-input">
+        <label for="FooterContactEmail">E-mail</label>
+        <input id="FooterContactEmail" class="field" type="email" name="contact[email]" autocomplete="email" required data-testid="contact-email-input">
+        <label for="FooterContactMessage">Message</label>
+        <textarea id="FooterContactMessage" class="field" name="contact[body]" rows="4" required data-testid="contact-message-input"></textarea>
+        <button class="btn btn--primary" type="submit" data-testid="contact-submit-button">Envoyer le message</button>
+      {% endform %}
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Pied de page",
+  "settings": []
+}
+{% endschema %}

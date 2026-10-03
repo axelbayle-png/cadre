@@ -1,0 +1,24 @@
+<section class="page-shell" data-testid="register-page">
+  <canvas class="starfield" data-starfield data-density="50"></canvas>
+  <div class="page-shell__inner page-shell__inner--narrow">
+    <div class="section__header reveal">
+      <p class="eyebrow eyebrow--center">Compte client</p>
+      <h1>Créer un compte</h1>
+      <p>Retrouvez plus facilement vos commandes et suivis.</p>
+    </div>
+    <div class="card page-content reveal">
+      {% form 'create_customer' %}
+        {{ form.errors | default_errors }}
+        <label class="lbl" for="RegisterFirstName">Prénom</label>
+        <input class="field" id="RegisterFirstName" type="text" name="customer[first_name]" autocomplete="given-name" data-testid="register-first-name-input">
+        <label class="lbl" for="RegisterLastName">Nom</label>
+        <input class="field" id="RegisterLastName" type="text" name="customer[last_name]" autocomplete="family-name" data-testid="register-last-name-input">
+        <label class="lbl" for="RegisterEmail">E-mail</label>
+        <input class="field" id="RegisterEmail" type="email" name="customer[email]" autocomplete="email" required data-testid="register-email-input">
+        <label class="lbl" for="RegisterPassword">Mot de passe</label>
+        <input class="field" id="RegisterPassword" type="password" name="customer[password]" autocomplete="new-password" required data-testid="register-password-input">
+        <button class="btn btn--gold btn--full" type="submit" data-testid="register-submit-button">Créer mon compte</button>
+      {% endform %}
+    </div>
+  </div>
+</section>

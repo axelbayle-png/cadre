@@ -1,0 +1,36 @@
+<div class="astra" data-astra data-api-url="{{ settings.astra_api_url | escape }}" data-testid="astra-widget">
+  <button type="button" class="astra__toggle" aria-label="Discuter avec Astra, assistante Celestiar" aria-expanded="false" data-astra-toggle data-testid="astra-open-button">
+    <span class="astra__icon-open">{% render 'icon', name: 'sparkles', size: 22 %}</span>
+    <span class="astra__icon-close" hidden>{% render 'icon', name: 'close', size: 22 %}</span>
+  </button>
+
+  <section class="astra__panel" aria-label="Assistante Astra" hidden data-astra-panel data-testid="astra-panel">
+    <header class="astra__header">
+      <img src="{{ 'logo-emblem.png' | asset_url }}" alt="" width="36" height="36">
+      <div>
+        <h2>Astra</h2>
+        <p>Assistante Celestiar · répond en quelques secondes</p>
+      </div>
+    </header>
+    <div class="astra__messages" data-astra-messages>
+      <div class="astra__message astra__message--assistant" data-testid="astra-message-0">Bonjour, je suis Astra, l'assistante Celestiar. Délais, tailles, personnalisation, cadeau : posez-moi vos questions, je réponds avec plaisir.</div>
+    </div>
+    <div class="astra__chips" data-astra-chips>
+      <button type="button" data-astra-chip data-testid="astra-chip-0">Quels sont les délais ?</button>
+      <button type="button" data-astra-chip data-testid="astra-chip-1">Quelle taille choisir ?</button>
+      <button type="button" data-astra-chip data-testid="astra-chip-2">C'est pour offrir</button>
+      <button type="button" data-astra-chip data-testid="astra-chip-3">Comment suivre ma commande ?</button>
+    </div>
+    <form class="astra__form" data-astra-form>
+      <input class="field" type="text" maxlength="600" placeholder="Votre question pour Astra…" aria-label="Votre question pour Astra" data-astra-input data-testid="astra-input">
+      <button type="submit" aria-label="Envoyer" data-testid="astra-send-button">{% render 'icon', name: 'send', size: 16 %}</button>
+    </form>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Assistante Astra",
+  "settings": []
+}
+{% endschema %}

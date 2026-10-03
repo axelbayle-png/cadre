@@ -1,0 +1,12 @@
+{
+  "sections": {
+    "hero": { "type": "hero" },
+    "marquee": { "type": "kinetic-marquee" },
+    "steps": { "type": "how-it-works" },
+    "collection": { "type": "instant-collection" },
+    "reviews": { "type": "reviews" },
+    "reassurance": { "type": "reassurance" },
+    "final_cta": { "type": "final-cta" }
+  },
+  "order": ["hero", "marquee", "steps", "collection", "reviews", "reassurance", "final_cta"]
+}

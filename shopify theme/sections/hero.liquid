@@ -1,0 +1,36 @@
+<section class="hero" data-testid="hero-section">
+  <div class="hero__background" aria-hidden="true">
+    <img src="{{ 'hero-nebula.jpg' | asset_url }}" alt="" width="2085" height="3706" loading="eager">
+  </div>
+  <canvas class="starfield" data-starfield data-density="130"></canvas>
+  <div class="hero__inner">
+    <div class="hero__content">
+      <p class="eyebrow reveal">Affiches de ciel étoilé · Imprimées sur commande</p>
+      <h1 class="hero-title" data-testid="hero-title">
+        <span class="masked-line"><span>Capturez le ciel du jour</span></span>
+        <span class="masked-line"><span><em>le plus important</em></span></span>
+        <span class="masked-line"><span>de votre vie.</span></span>
+      </h1>
+      <p class="hero__subtitle reveal reveal-delay-3">Posters célestes personnalisés, imprimés et livrés chez vous.</p>
+      <div class="hero__actions reveal reveal-delay-4">
+        <a class="btn btn--gold" href="{{ routes.all_products_collection_url }}" data-testid="hero-shop-button">
+          {% render 'icon', name: 'sparkles', size: 17 %} Découvrir la collection
+        </a>
+      </div>
+      <p class="hero__note reveal reveal-delay-5">Créée pour vous, livrée en 4 à 12 jours ouvrés</p>
+    </div>
+
+    <div class="hero__mockups" aria-label="Exemples d'affiches personnalisées">
+      <img class="hero-mockup hero-mockup--left" src="{{ 'mockup-aurore-live.jpg' | asset_url }}" alt="Affiche Aurore Boréale personnalisée dans une chambre cosy, cadre chêne" width="1344" height="1728" loading="eager" data-testid="hero-mockup-aurore">
+      <img class="hero-mockup hero-mockup--right" src="{{ 'mockup-nuit-profonde-live.jpg' | asset_url }}" alt="Affiche Voie Lactée personnalisée dans une salle à manger chaleureuse, cadre chêne" width="1920" height="1280" loading="eager" data-testid="hero-mockup-voie">
+    </div>
+  </div>
+  <div class="scroll-cue" aria-hidden="true"><span></span></div>
+</section>
+
+{% schema %}
+{
+  "name": "Héros",
+  "settings": []
+}
+{% endschema %}

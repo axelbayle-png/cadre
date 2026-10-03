@@ -1,0 +1,23 @@
+<section class="section section--reassurance" data-testid="reassurance-section">
+  <div class="reassurance-grid">
+    <div class="reassurance-item reveal" data-testid="reassurance-payment">
+      <span class="icon-box">{% render 'icon', name: 'shield', size: 17 %}</span>
+      <div><h3>Paiement sécurisé</h3><p>Transactions chiffrées par Shopify Checkout, selon les moyens activés.</p></div>
+    </div>
+    <div class="reassurance-item reveal" data-testid="reassurance-print">
+      <span class="icon-box">{% render 'icon', name: 'award', size: 17 %}</span>
+      <div><h3>Impression premium</h3><p>Papier d'art 250 g/m², encres pigmentaires.</p></div>
+    </div>
+    <div class="reassurance-item reveal" data-testid="reassurance-replace">
+      <span class="icon-box">{% render 'icon', name: 'package', size: 17 %}</span>
+      <div><h3>Satisfait ou remplacé</h3><p>Défaut ou dommage au transport ? Nous remplaçons ou remboursons.</p></div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Réassurance",
+  "settings": []
+}
+{% endschema %}

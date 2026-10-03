@@ -1,0 +1,14 @@
+<div class="marquee" aria-hidden="true" data-testid="kinetic-marquee">
+  <div class="marquee__track">
+    {%- for i in (1..2) -%}
+      <span>Celestiar</span><i></i><span>Votre ciel étoilé</span><i></i><span>Instant Céleste</span><i></i><span>Imprimé pour vous</span><i></i>
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Ruban animé",
+  "settings": []
+}
+{% endschema %}

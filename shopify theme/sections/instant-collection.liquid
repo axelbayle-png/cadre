@@ -1,0 +1,21 @@
+<section class="collection-wall" data-testid="collection-section">
+  <div class="section__header reveal">
+    <p class="eyebrow eyebrow--center">La collection</p>
+    <h2>Instant Céleste</h2>
+    <p>Votre ciel exact, à la date et au lieu qui comptent, transformé en affiche d'art dorée et personnalisée.</p>
+  </div>
+  <div class="product-grid">
+    {% render 'product-card', handle: 'aurore-boreale', title: 'Aurore Boréale', tagline: 'Une aurore rien qu’à vous', poster_asset: 'poster-aurore.jpg' %}
+    {% render 'product-card', handle: 'nuages-roses', title: 'Nuages Roses', tagline: 'La douceur d’un ciel d’aube', poster_asset: 'poster-nuages.jpg' %}
+    {% render 'product-card', handle: 'etoiles-celestes', title: 'Étoiles Célestes', tagline: 'Un ciel d’été infini', poster_asset: 'poster-etoiles-celestes.jpg' %}
+    {% render 'product-card', handle: 'voie-lactee', title: 'Voie Lactée', tagline: 'La voie lactée en majesté', poster_asset: 'poster-voie-lactee.jpg' %}
+    {% render 'product-card', handle: 'etoiles-filantes', title: 'Étoiles Filantes', tagline: 'Une pluie de vœux', poster_asset: 'poster-etoiles.jpg' %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Collection Céleste",
+  "settings": []
+}
+{% endschema %}

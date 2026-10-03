@@ -1,0 +1,80 @@
+<section class="page-shell" data-testid="cart-page">
+  <canvas class="starfield" data-starfield data-density="50"></canvas>
+  <div class="page-shell__inner">
+    <div class="section__header reveal">
+      <p class="eyebrow eyebrow--center">Votre panier</p>
+      <h1>Votre panier</h1>
+      <p>Vérifiez vos affiches personnalisées avant de passer au paiement sécurisé Shopify.</p>
+    </div>
+
+    {% if cart.item_count == 0 %}
+      <div class="card empty-cart reveal" data-testid="cart-empty-message">
+        {% render 'icon', name: 'bag', size: 38 %}
+        <p>Votre panier attend son premier ciel étoilé.</p>
+        <a class="btn btn--gold" href="{{ routes.all_products_collection_url }}" data-testid="empty-cart-shop-button">Découvrir la collection</a>
+      </div>
+    {% else %}
+      {% form 'cart', cart, id: 'CartForm', class: 'cart-layout' %}
+        <div class="cart-items">
+          {% for item in cart.items %}
+            <article class="card cart-item reveal" data-testid="cart-item-{{ forloop.index }}">
+              <a class="cart-item__image" href="{{ item.url }}">
+                {% if item.image %}
+                  <img src="{{ item.image | image_url: width: 240 }}" alt="{{ item.image.alt | default: item.product.title | escape }}" width="240" height="360" loading="lazy">
+                {% else %}
+                  <img src="{{ 'poster-aurore.jpg' | asset_url }}" alt="{{ item.product.title | escape }}" width="1000" height="1500" loading="lazy">
+                {% endif %}
+              </a>
+              <div class="cart-item__content">
+                <div class="cart-item__top">
+                  <div>
+                    <h2>{{ item.product.title }}</h2>
+                    <p>{{ item.variant.title }}</p>
+                  </div>
+                  <a class="cart-remove" href="{{ item.url_to_remove }}" aria-label="Retirer {{ item.product.title | escape }}" data-testid="remove-item-{{ forloop.index }}">{% render 'icon', name: 'trash', size: 15 %}</a>
+                </div>
+                {% if item.properties.size > 0 %}
+                  <dl class="cart-properties" data-testid="cart-properties-{{ forloop.index }}">
+                    {% for property in item.properties %}
+                      {% assign first_char = property.first | slice: 0, 1 %}
+                      {% unless property.last == blank or first_char == '_' %}
+                        <div><dt>{{ property.first }}</dt><dd>{{ property.last }}</dd></div>
+                      {% endunless %}
+                    {% endfor %}
+                  </dl>
+                {% endif %}
+                <div class="cart-item__bottom">
+                  <label>
+                    <span>Quantité</span>
+                    <input class="field" type="number" name="updates[]" value="{{ item.quantity }}" min="0" aria-label="Quantité pour {{ item.product.title | escape }}" data-testid="quantity-input-{{ forloop.index }}">
+                  </label>
+                  <strong>{{ item.final_line_price | money }}</strong>
+                </div>
+              </div>
+            </article>
+          {% endfor %}
+          <button class="btn btn--ghost" type="submit" name="update" data-testid="update-cart-button">Mettre à jour les quantités</button>
+        </div>
+
+        <aside class="card cart-summary reveal" data-testid="cart-summary">
+          <h2>Récapitulatif</h2>
+          <div><span>Sous-total</span><strong data-testid="cart-subtotal">{{ cart.total_price | money }}</strong></div>
+          <div><span>Livraison</span><strong data-testid="cart-shipping">Offerte</strong></div>
+          {% assign tva = cart.total_price | times: 20 | divided_by: 120 %}
+          <div class="cart-tax"><span>dont TVA (20 %)</span><span data-testid="cart-tva">{{ tva | money }}</span></div>
+          <div class="cart-total"><span>Total TTC</span><strong data-testid="cart-total">{{ cart.total_price | money }}</strong></div>
+          <p class="tax-note" data-testid="cart-tva-note">TVA affichée si vos prix Shopify sont configurés TTC.</p>
+          <button class="btn btn--gold btn--full" type="submit" name="checkout" data-testid="checkout-button">{% render 'icon', name: 'lock', size: 15 %} Passer commande</button>
+          <p class="cart-note">Paiement sécurisé par Shopify · Livraison offerte si configurée · Satisfait ou remplacé</p>
+        </aside>
+      {% endform %}
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Panier",
+  "settings": []
+}
+{% endschema %}

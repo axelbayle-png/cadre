@@ -1,0 +1,11 @@
+{%- assign poster_alt = alt | default: 'Affiche céleste personnalisée Celestiar' -%}
+<div class="live-poster" data-testid="live-poster">
+  <img src="{{ image }}" alt="{{ poster_alt | escape }}" width="1000" height="1500" loading="{% if lazy == false %}eager{% else %}lazy{% endif %}">
+  <div class="live-poster__veil" aria-hidden="true"></div>
+  <div class="live-poster__text" aria-live="polite">
+    <p class="live-poster__name" data-live-field="prenom" data-testid="preview-name">LÉA</p>
+    <p class="live-poster__date" data-live-field="date" data-testid="preview-date">12 mars 2024 · 08h42</p>
+    <p class="live-poster__city" data-live-field="ville" data-testid="preview-city">Paris</p>
+    <p class="live-poster__phrase" data-live-field="phrase" data-testid="preview-phrase">Le jour où tout a commencé</p>
+  </div>
+</div>

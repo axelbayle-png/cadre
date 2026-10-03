@@ -1,0 +1,31 @@
+<section class="page-shell" data-testid="search-page">
+  <canvas class="starfield" data-starfield data-density="50"></canvas>
+  <div class="page-shell__inner page-shell__inner--narrow">
+    <div class="section__header reveal">
+      <p class="eyebrow eyebrow--center">Recherche</p>
+      <h1>Rechercher dans Celestiar</h1>
+    </div>
+    <form action="{{ routes.search_url }}" method="get" role="search" class="search-form reveal" data-testid="search-form">
+      <input class="field" type="search" name="q" value="{{ search.terms | escape }}" placeholder="Aurore, affiche, cadre…" aria-label="Rechercher" data-testid="search-input">
+      <button class="btn btn--gold" type="submit" data-testid="search-button">{% render 'icon', name: 'search', size: 15 %} Rechercher</button>
+    </form>
+    {% if search.performed %}
+      <div class="search-results" data-testid="search-results">
+        <p>{{ search.results_count }} résultat{% if search.results_count > 1 %}s{% endif %} pour « {{ search.terms }} »</p>
+        {% for item in search.results %}
+          <a class="card search-result" href="{{ item.url }}" data-testid="search-result-{{ forloop.index }}">
+            <strong>{{ item.title }}</strong>
+            <span>{{ item.content | strip_html | truncate: 140 }}</span>
+          </a>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Recherche",
+  "settings": []
+}
+{% endschema %}

@@ -1,0 +1,49 @@
+<section class="page-shell" data-testid="suivi-page">
+  <canvas class="starfield" data-starfield data-density="60"></canvas>
+  <div class="page-shell__inner">
+    <div class="section__header reveal">
+      <p class="eyebrow eyebrow--center">Suivi de commande</p>
+      <h1>Suivez votre création</h1>
+      <p>Après votre commande Shopify, vous recevez par e-mail la confirmation, puis le lien de suivi dès l'expédition.</p>
+    </div>
+
+    <div class="card tracking-card reveal" data-testid="tracking-lookup-card">
+      <h2>Retrouver ma commande</h2>
+      <p>Le moyen le plus sûr est d'ouvrir le lien « Voir ma commande » reçu dans l'e-mail de confirmation Shopify. Si vous avez activé les comptes clients, vos commandes apparaissent aussi dans votre espace.</p>
+      <div class="tracking-actions">
+        <a class="btn btn--ghost" href="{{ routes.account_url }}" data-testid="tracking-account-link">Ouvrir mon compte</a>
+        <a class="btn btn--gold" href="mailto:celestiarshop@outlook.com" data-testid="tracking-email-link">{% render 'icon', name: 'mail', size: 15 %} Demander de l'aide</a>
+      </div>
+    </div>
+
+    <div class="tracking-grid">
+      <article class="card tracking-step reveal" data-testid="tracking-step-01">
+        <div><span class="icon-box icon-box--gold">{% render 'icon', name: 'check', size: 19 %}</span><span>01</span></div>
+        <h3>Commande confirmée</h3>
+        <p>Votre paiement Shopify est validé et votre confirmation part par e-mail.</p>
+      </article>
+      <article class="card tracking-step reveal" data-testid="tracking-step-02">
+        <div><span class="icon-box icon-box--gold">{% render 'icon', name: 'paint', size: 19 %}</span><span>02</span></div>
+        <h3>Création</h3>
+        <p>Votre affiche est composée avec vos informations de personnalisation, en lettres dorées.</p>
+      </article>
+      <article class="card tracking-step reveal" data-testid="tracking-step-03">
+        <div><span class="icon-box icon-box--gold">{% render 'icon', name: 'package', size: 19 %}</span><span>03</span></div>
+        <h3>Impression</h3>
+        <p>Impression sur papier d'art 250 g/m², encadrage et préparation du colis.</p>
+      </article>
+      <article class="card tracking-step reveal" data-testid="tracking-step-04">
+        <div><span class="icon-box icon-box--gold">{% render 'icon', name: 'truck', size: 19 %}</span><span>04</span></div>
+        <h3>Expédition</h3>
+        <p>Sous 4 à 12 jours ouvrés : le numéro de suivi vous est envoyé par e-mail.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Suivi de commande",
+  "settings": []
+}
+{% endschema %}
